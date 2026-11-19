@@ -160,9 +160,11 @@
       padding: 14px;
       margin: 10px 0;
       font-size: 0.9rem;
-      line-height: 1.5;
+      line-height: 1.55;
     }
     .info-box strong { color: var(--accent); }
+    .info-box h3 { margin: 0 0 8px; font-size: 1.05rem; color: var(--accent); }
+    .price { color: #fbbf24; font-weight: 600; }
     footer {
       text-align: center;
       padding: 16px;
@@ -186,7 +188,10 @@
     <button class="tab" data-stage="s3">Stage 3</button>
     <button class="tab" data-stage="s4">Stage 4</button>
     <button class="tab" data-stage="favs">★ 收藏</button>
-    <button class="tab" data-stage="info">資訊</button>
+    <button class="tab" data-stage="map">地圖</button>
+    <button class="tab" data-stage="food">餐飲</button>
+    <button class="tab" data-stage="guide">攻略</button>
+    <button class="tab" data-stage="info">票務/交通</button>
   </div>
 
   <div class="content">
@@ -196,6 +201,92 @@
     <div class="stage-section" id="s3"></div>
     <div class="stage-section" id="s4"></div>
     <div class="stage-section" id="favs"></div>
+
+    <!-- 地圖 -->
+    <div class="stage-section" id="map">
+      <div class="info-box">
+        <h3>入場口（3 個）</h3>
+        1. <strong>Canal Walk</strong><br>
+        2. <strong>Mall Entrance</strong><br>
+        3. <strong>開車 / Muvmi Shuttle</strong> 入口<br><br>
+        <strong>吸菸區</strong>：戶外，靠近 Canal Walk 一側<br>
+        <strong>Ushers</strong>：現場有工作人員幫忙指路、解答問題
+      </div>
+      <div class="info-box">
+        <h3>樓層與設施（B1 為主）</h3>
+        • 可從 B1 搭電梯到 4F The Commons<br>
+        • B1：Merchandise、Register、Precious Plastic Bangkok、Zone Booth、Drinks<br>
+        • Stage 1–4、VIP Zone、FOH、廁所分佈各層<br>
+        • 找水滴符號有免費補水站
+      </div>
+    </div>
+
+    <!-- 餐飲 -->
+    <div class="stage-section" id="food">
+      <div class="info-box">
+        <h3>Food & Beverage Guide</h3>
+        <strong>Juicy Buddy</strong><br>
+        Mak Mao Yogurt Smoothie / Mango & Passionfruit Smoothie <span class="price">80 THB</span><br><br>
+        <strong>Bum Bum Dough</strong><br>
+        Bora Berry / Messy Shio Brown <span class="price">85 THB</span><br><br>
+        <strong>London Fries</strong><br>
+        Beef BBQ Fries <span class="price">180 THB</span> · Fish & Chips <span class="price">250 THB</span><br><br>
+        <strong>Mad Burger</strong><br>
+        Bacon Single Stack <span class="price">180 THB</span> · Sunnyside Single Stack <span class="price">170 THB</span><br><br>
+        <strong>PETE's PASTA</strong><br>
+        Creamy Corn <span class="price">219 THB</span> · Pesto Sauce <span class="price">169 THB</span><br><br>
+        <strong>ZEBRAZ</strong><br>
+        Grilled Mushroom <span class="price">100 THB</span> · Beef Quesadilla <span class="price">160 THB</span><br><br>
+        <strong>WAGRiil BBQ STEAK</strong><br>
+        Beef BBQ Steak <span class="price">100 THB</span> · Pork BBQ Steak <span class="price">70 THB</span><br><br>
+        <strong>GUSS DAMN GOOD × MELT</strong><br>
+        Burnt Caramel / Mint Chocolate Chips <span class="price">150 THB</span>
+      </div>
+    </div>
+
+    <!-- 攻略：補水、垃圾、工作坊、周邊 -->
+    <div class="stage-section" id="guide">
+      <div class="info-box">
+        <h3>補水 & 垃圾分類</h3>
+        • 免費補水站（找地圖上的水滴符號）<br>
+        • 自備水壺，或使用現場杯子<br>
+        • 垃圾請分類投放：<br>
+        &nbsp;&nbsp;🔴 Food waste / Liquid<br>
+        &nbsp;&nbsp;🔵 Plastic bottles (PET)<br>
+        &nbsp;&nbsp;🟢 Bottle caps<br>
+        &nbsp;&nbsp;🟠 Blend cup (reusable)<br>
+        &nbsp;&nbsp;🟣 Other plastics<br>
+        &nbsp;&nbsp;🟡 Food-soiled paper / Napkins
+      </div>
+      <div class="info-box">
+        <h3>Precious Plastic Bangkok Workshop</h3>
+        時間：13:00 – 19:00<br>
+        地點：B1, Cloud 11<br><br>
+        • Plastic Donations<br>
+        • PPB & Community Product Sale<br>
+        • Keychain Workshop<br>
+        • Accessory Workshop<br><br>
+        <strong>價格</strong><br>
+        Keychain <span class="price">199 THB</span><br>
+        Keychain + Tag <span class="price">259 THB</span><br>
+        Necklace <span class="price">399 THB</span><br>
+        Bracelet <span class="price">299 THB</span>
+      </div>
+      <div class="info-box">
+        <h3>Exclusive Festival Merchandise</h3>
+        T-shirt <span class="price">730 THB / 件</span><br><br>
+        款式包括：<br>
+        • MELT FEST T-SHIRT<br>
+        • Reality Club T-SHIRT<br>
+        • No Buses T-SHIRT<br>
+        • PAMI T-SHIRT<br>
+        • James Alyn T-SHIRT<br>
+        • Solitude Is Bliss T-SHIRT<br>
+        （現場販售，數量有限）
+      </div>
+    </div>
+
+    <!-- 原本的票務交通 -->
     <div class="stage-section" id="info">
       <div class="info-box">
         <strong>票務</strong><br>
@@ -219,11 +310,10 @@
 
   <footer>
     MELT Festival EPG · 手機版<br>
-    點擊樂團名可開啟 Spotify / YouTube
+    點擊樂團名可開啟 Spotify · 資料來自官方 Festival Guide
   </footer>
 
   <script>
-    // Artist metadata: genre, country, optional exact Spotify URL (else search)
     const ARTISTS = {
       "Moving and Cut": { genre: "Indie Rock", country: "TH", spotify: null },
       "Safeplanet": { genre: "Indie / Alt", country: "TH", spotify: null },
@@ -249,11 +339,6 @@
       "Phum Viphurit": { genre: "Indie Folk / Neo Soul", country: "TH", spotify: "https://open.spotify.com/artist/5mqguTgtaoCMNMZD6txCh6" },
       "JPBS": { genre: "Indie / Alt", country: "TH", spotify: null }
     };
-
-    // Fix known Spotify IDs
-    ARTISTS["ADOY"].spotify = "https://open.spotify.com/artist/64sY7LsUjNE3ifONkftTXC";
-    ARTISTS["Phum Viphurit"].spotify = "https://open.spotify.com/artist/5mqguTgtaoCMNMZD6txCh6";
-    ARTISTS["Reality Club"].spotify = "https://open.spotify.com/artist/1DjZI46mVZZZYmmmygRnTw";
 
     const SCHEDULE = [
       { start: "11:45", end: "12:45", stage: "s2", artist: "Moving and Cut" },
@@ -340,8 +425,7 @@
 
     function artistLink(name) {
       const a = ARTISTS[name] || { genre: "Indie", country: "TH" };
-      const spotify = a.spotify || `https://open.spotify.com/search/${encodeURIComponent(name)}`;
-      return spotify;
+      return a.spotify || `https://open.spotify.com/search/${encodeURIComponent(name)}`;
     }
 
     function metaText(name) {
