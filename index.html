@@ -165,6 +165,19 @@
     .info-box strong { color: var(--accent); }
     .info-box h3 { margin: 0 0 8px; font-size: 1.05rem; color: var(--accent); }
     .price { color: #fbbf24; font-weight: 600; }
+    .map-frame {
+      width: 100%;
+      height: 280px;
+      border: 0;
+      border-radius: 12px;
+      margin: 10px 0;
+    }
+    .link-list a {
+      color: var(--accent);
+      text-decoration: none;
+      display: block;
+      margin: 4px 0;
+    }
     footer {
       text-align: center;
       padding: 16px;
@@ -205,19 +218,26 @@
     <!-- 地圖 -->
     <div class="stage-section" id="map">
       <div class="info-box">
+        <h3>場地位置</h3>
+        Cloud 11 · 888 Sukhumvit Rd, Phra Khanong, Bangkok<br>
+        <a href="https://maps.app.goo.gl/chH5mE43hD4Vkc326" target="_blank" rel="noopener" style="color:var(--accent);">開啟 Google Maps</a>
+      </div>
+      <iframe class="map-frame" src="https://maps.google.com/maps?q=Cloud+11+Bangkok&output=embed" loading="lazy"></iframe>
+      <div class="info-box">
         <h3>入場口（3 個）</h3>
         1. <strong>Canal Walk</strong><br>
         2. <strong>Mall Entrance</strong><br>
         3. <strong>開車 / Muvmi Shuttle</strong> 入口<br><br>
         <strong>吸菸區</strong>：戶外，靠近 Canal Walk 一側<br>
-        <strong>Ushers</strong>：現場有工作人員幫忙指路、解答問題
+        <strong>Ushers</strong>：現場有工作人員幫忙指路
       </div>
       <div class="info-box">
-        <h3>樓層與設施（B1 為主）</h3>
+        <h3>樓層與設施（主要在 B1）</h3>
+        • Stage 1–4、VIP Zone、FOH 分佈各層<br>
+        • B1：Merchandise、Register、Precious Plastic、Drinks<br>
         • 可從 B1 搭電梯到 4F The Commons<br>
-        • B1：Merchandise、Register、Precious Plastic Bangkok、Zone Booth、Drinks<br>
-        • Stage 1–4、VIP Zone、FOH、廁所分佈各層<br>
-        • 找水滴符號有免費補水站
+        • 找水滴符號有免費補水站<br>
+        • 詳細舞台地圖請見 <a href="https://www.instagram.com/meltlivehouse/" target="_blank" rel="noopener" style="color:var(--accent);">官方 Instagram Festival Guide</a>
       </div>
     </div>
 
@@ -244,7 +264,7 @@
       </div>
     </div>
 
-    <!-- 攻略：補水、垃圾、工作坊、周邊 -->
+    <!-- 攻略 -->
     <div class="stage-section" id="guide">
       <div class="info-box">
         <h3>補水 & 垃圾分類</h3>
@@ -286,14 +306,14 @@
       </div>
     </div>
 
-    <!-- 原本的票務交通 -->
+    <!-- 票務交通 -->
     <div class="stage-section" id="info">
       <div class="info-box">
         <strong>票務</strong><br>
         General Admission：1700 THB<br>
         Melt Deluxe：2500 THB<br>
         Early Bird / VVIP：已售完<br>
-        購票：Ticketmelon
+        <a href="https://www.ticketmelon.com/meltlivehouse/meltfestival/" target="_blank" rel="noopener" style="color:var(--accent);">購票 Ticketmelon</a>
       </div>
       <div class="info-box">
         <strong>交通</strong><br>
@@ -301,43 +321,44 @@
         BTS อุดมสุข (Udom Suk) 出口 2 → 步行約 6 分鐘<br>
         可停 Cloud 11 或 True Digital Park
       </div>
-      <div class="info-box">
-        <strong>地址</strong><br>
-        Cloud 11, 888 Sukhumvit Rd, Phra Khanong, Bangkok
+      <div class="info-box link-list">
+        <strong>官方連結</strong><br>
+        <a href="https://www.instagram.com/meltlivehouse/" target="_blank" rel="noopener">Instagram @meltlivehouse</a>
+        <a href="https://maps.app.goo.gl/chH5mE43hD4Vkc326" target="_blank" rel="noopener">Google Maps</a>
       </div>
     </div>
   </div>
 
   <footer>
     MELT Festival EPG · 手機版<br>
-    點擊樂團名可開啟 Spotify · 資料來自官方 Festival Guide
+    點擊樂團名可開啟 Spotify / YouTube · 資料來自官方 Festival Guide
   </footer>
 
   <script>
     const ARTISTS = {
-      "Moving and Cut": { genre: "Indie Rock", country: "TH", spotify: null },
-      "Safeplanet": { genre: "Indie / Alt", country: "TH", spotify: null },
-      "CORNBOI": { genre: "Indie / Electronic", country: "TH", spotify: null },
-      "Television off": { genre: "Indie Rock", country: "TH", spotify: null },
-      "Yew": { genre: "Indie / Alt", country: "TH", spotify: null },
-      "Yented": { genre: "Indie Pop", country: "TH", spotify: null },
-      "Bomb at Track": { genre: "Rock / Alt", country: "TH", spotify: null },
-      "Srirajah Rockers": { genre: "Rock", country: "TH", spotify: null },
-      "James Alyn": { genre: "Indie / Singer-Songwriter", country: "TH", spotify: null },
-      "No Buses": { genre: "Indie Rock / Garage", country: "JP", spotify: null },
-      "pami": { genre: "Indie / Alt", country: "TH", spotify: null },
-      "WS13": { genre: "Indie / Alt", country: "TH", spotify: null },
-      "Whal & Dolph": { genre: "Indie / Electronic", country: "TH", spotify: null },
-      "Reality Club": { genre: "Indie Rock / Alt", country: "ID", spotify: "https://open.spotify.com/artist/1DjZI46mVZZZYmmmygRnTw" },
-      "SLUR": { genre: "Indie / Alt", country: "TH", spotify: null },
-      "WIM": { genre: "Indie / Alt", country: "TH", spotify: null },
-      "Yellow Fang": { genre: "Indie Rock / Alt", country: "TH", spotify: null },
-      "ADOY": { genre: "Synth Pop / Indie", country: "KR", spotify: "https://open.spotify.com/artist/64sY7LsUjNE3ifONkftTXC" },
-      "Solitude Is Bliss": { genre: "Indie / Dream Pop", country: "TH", spotify: null },
-      "YOUNGOHM": { genre: "Thai Hip-Hop / Trap", country: "TH", spotify: "https://open.spotify.com/artist/0AvGycOEDZTaBFLCaiGd9S" },
-      "Younggu + FIIXD + GUNNER": { genre: "Hip-Hop / Collab", country: "TH", spotify: null },
-      "Phum Viphurit": { genre: "Indie Folk / Neo Soul", country: "TH", spotify: "https://open.spotify.com/artist/5mqguTgtaoCMNMZD6txCh6" },
-      "JPBS": { genre: "Indie / Alt", country: "TH", spotify: null }
+      "Moving and Cut": { genre: "Thai Rock / Alt", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=Moving+and+Cut+band" },
+      "Safeplanet": { genre: "Alt Pop / Electronic", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=Safeplanet+band+Thailand" },
+      "CORNBOI": { genre: "Electronic / Dance", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=CORNBOI+music" },
+      "Television off": { genre: "Alt Rock / Indie Rock", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=Television+Off+band+Thailand" },
+      "Yew": { genre: "Alt / Experimental", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=Yew+band+Thailand" },
+      "Yented": { genre: "Pop / Alt Pop", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=Yented+music+Thailand" },
+      "Bomb at Track": { genre: "Rock / Alt Rock", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=Bomb+at+Track+band" },
+      "Srirajah Rockers": { genre: "Rock / Thai Rock", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=Srirajah+Rockers" },
+      "James Alyn": { genre: "Singer-Songwriter / Folk", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=James+Alyn+music" },
+      "No Buses": { genre: "Garage Rock / Alt Rock", country: "JP", spotify: null, yt: "https://www.youtube.com/@nobusesband" },
+      "pami": { genre: "Alt / Pop", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=PAMI+band+Thailand" },
+      "WS13": { genre: "Local Act / Alt", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=WS13+band+OR+artist+Thailand+OR+Bangkok", note: "Spotify 無資料，建議 YouTube 搜尋" },
+      "Whal & Dolph": { genre: "Electronic / Experimental", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=Whal+and+Dolph+music" },
+      "Reality Club": { genre: "Indie Rock / Alt Rock", country: "ID", spotify: "https://open.spotify.com/artist/1DjZI46mVZZZYmmmygRnTw", yt: "https://www.youtube.com/results?search_query=Reality+Club+band" },
+      "SLUR": { genre: "Alt / Experimental", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=SLUR+band+Thailand" },
+      "WIM": { genre: "Alt Pop / Rock", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=WIM+band+Thailand" },
+      "Yellow Fang": { genre: "Alt Rock / Garage", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=Yellow+Fang+band" },
+      "ADOY": { genre: "Synth Pop / City Pop", country: "KR", spotify: "https://open.spotify.com/artist/64sY7LsUjNE3ifONkftTXC", yt: "https://www.youtube.com/@ADOYband" },
+      "Solitude Is Bliss": { genre: "Dream Pop / Shoegaze", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=Solitude+Is+Bliss+band" },
+      "YOUNGOHM": { genre: "Thai Hip-Hop / Trap", country: "TH", spotify: "https://open.spotify.com/artist/0AvGycOEDZTaBFLCaiGd9S", yt: "https://www.youtube.com/results?search_query=YOUNGOHM" },
+      "Younggu + FIIXD + GUNNER": { genre: "Thai Hip-Hop / Trap Collab", country: "TH", spotify: "https://open.spotify.com/artist/0AvGycOEDZTaBFLCaiGd9S", yt: "https://www.youtube.com/results?search_query=Younggu+FIIXD+GUNNER+OR+Diamond+MQT", note: "Younggu 主領 + FIIXD & GUNNER 同台" },
+      "Phum Viphurit": { genre: "Indie Folk / Neo Soul", country: "TH", spotify: "https://open.spotify.com/artist/5mqguTgtaoCMNMZD6txCh6", yt: "https://www.youtube.com/results?search_query=Phum+Viphurit" },
+      "JPBS": { genre: "Alt / Rock", country: "TH", spotify: null, yt: "https://www.youtube.com/results?search_query=JPBS+band+Thailand" }
     };
 
     const SCHEDULE = [
@@ -424,13 +445,15 @@
     }
 
     function artistLink(name) {
-      const a = ARTISTS[name] || { genre: "Indie", country: "TH" };
-      return a.spotify || `https://open.spotify.com/search/${encodeURIComponent(name)}`;
+      const a = ARTISTS[name] || {};
+      return a.spotify || a.yt || `https://www.youtube.com/results?search_query=${encodeURIComponent(name)}`;
     }
 
     function metaText(name) {
       const a = ARTISTS[name] || { genre: "—", country: "—" };
-      return `${a.genre} · ${a.country}`;
+      let t = `${a.genre} · ${a.country}`;
+      if (a.note) t += ` · ${a.note}`;
+      return t;
     }
 
     function toggleFav(name) {
@@ -498,16 +521,16 @@
     function renderFavs() {
       const el = document.getElementById("favs");
       if (favs.length === 0) {
-        el.innerHTML = `<div class="fav-empty">還沒有收藏任何樂團<br>點擊星星 ★ 來收藏你愛的團</div>`;
+        el.innerHTML = `<div class="fav-empty">還沒有收藏任何表演<br>點 ★ 即可收藏</div>`;
         return;
       }
       const favSets = SCHEDULE.filter(s => favs.includes(s.artist));
       el.innerHTML = favSets.map(s => {
-        const stageName = { s1: "Stage 1", s2: "Stage 2", s3: "Stage 3", s4: "Stage 4" }[s.stage];
         const nowClass = isNow(s) ? "now" : "";
+        const stageName = { s1: "Stage 1", s2: "Stage 2", s3: "Stage 3", s4: "Stage 4" }[s.stage];
         return `<div class="set-card ${nowClass}">
           <div class="set-header">
-            <div class="set-time">${s.start} – ${s.end}<br><span style="font-size:0.75rem;color:var(--muted)">${stageName}</span></div>
+            <div class="set-time">${s.start} – ${s.end}<br><span style="font-size:0.75rem;color:var(--muted);">${stageName}</span></div>
             <div class="set-artist-wrap">
               <a class="artist-link" href="${artistLink(s.artist)}" target="_blank" rel="noopener">${s.artist}</a>
               <div class="meta">${metaText(s.artist)}</div>
@@ -518,68 +541,53 @@
       }).join("");
     }
 
+    function renderAll() {
+      renderTimeline();
+      ["s1", "s2", "s3", "s4"].forEach(renderStage);
+      renderFavs();
+      updateNowBanner();
+    }
+
     function updateNowBanner() {
       const banner = document.getElementById("nowBanner");
-      const target = getNextOrCurrent();
-      const bkk = getBangkokNow();
-      const isFestivalDay = bkk.getFullYear() === 2026 && bkk.getMonth() === 10 && bkk.getDate() === 21;
-
-      if (!isFestivalDay) {
-        const days = Math.ceil((new Date(2026, 10, 21) - bkk) / (1000 * 60 * 60 * 24));
-        banner.textContent = days > 0 ? `音樂節還有 ${days} 天開始` : "音樂節已結束";
+      const next = getNextOrCurrent();
+      if (next && isNow(next)) {
+        banner.textContent = `正在演出：${next.artist} @ ${next.stage.toUpperCase()}`;
         banner.classList.add("show");
-        return;
-      }
-
-      if (target && isNow(target)) {
-        banner.textContent = `正在演出：${target.artist} (${target.start}–${target.end})`;
-        banner.classList.add("show");
-      } else if (target) {
-        banner.textContent = `下一場：${target.artist} ${target.start}`;
+      } else if (next) {
+        banner.textContent = `下一場：${next.start} ${next.artist}`;
         banner.classList.add("show");
       } else {
         banner.classList.remove("show");
       }
     }
 
-    function scrollToNow() {
-      const activeSection = document.querySelector(".stage-section.active");
-      if (!activeSection) return;
-      const target = activeSection.querySelector(".now") || activeSection.querySelector(".timeline-item");
-      if (target) {
-        setTimeout(() => {
-          target.scrollIntoView({ behavior: "smooth", block: "center" });
-        }, 100);
-      }
-    }
-
-    function renderAll() {
-      renderTimeline();
-      ["s1", "s2", "s3", "s4"].forEach(renderStage);
-      renderFavs();
-      updateNowBanner();
-      if (document.getElementById("timeline").classList.contains("active")) {
-        scrollToNow();
+    function switchTab(stage) {
+      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".stage-section").forEach(s => s.classList.remove("active"));
+      document.querySelector(`.tab[data-stage="${stage}"]`).classList.add("active");
+      document.getElementById(stage).classList.add("active");
+      if (stage === "timeline") {
+        const nowEl = document.querySelector(".timeline-item.now, .set-card.now");
+        if (nowEl) nowEl.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     }
 
     document.querySelectorAll(".tab").forEach(tab => {
-      tab.addEventListener("click", () => {
-        document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-        document.querySelectorAll(".stage-section").forEach(s => s.classList.remove("active"));
-        tab.classList.add("active");
-        const stage = tab.dataset.stage;
-        document.getElementById(stage).classList.add("active");
-        if (stage === "timeline") scrollToNow();
-      });
+      tab.addEventListener("click", () => switchTab(tab.dataset.stage));
     });
 
     renderAll();
+    setInterval(renderAll, 60000);
 
-    setInterval(() => {
-      updateNowBanner();
-      renderAll();
-    }, 60000);
+    // Auto jump on load if festival day
+    const bkk = getBangkokNow();
+    if (bkk.getFullYear() === 2026 && bkk.getMonth() === 10 && bkk.getDate() === 21) {
+      setTimeout(() => {
+        const nowEl = document.querySelector(".timeline-item.now, .set-card.now");
+        if (nowEl) nowEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 500);
+    }
   </script>
 </body>
 </html>
