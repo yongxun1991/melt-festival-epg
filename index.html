@@ -1,1 +1,501 @@
-PLACEHOLDER_WILL_BE_REPLACED
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MELT Festival EPG 2026</title>
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --card: #1a1a1a;
+      --accent: #ff6b35;
+      --text: #ffffff;
+      --muted: #aaaaaa;
+      --border: #333;
+      --now: #22c55e;
+      --fav: #fbbf24;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.4;
+      padding-bottom: 80px;
+    }
+    header {
+      background: #000;
+      padding: 16px 16px 10px;
+      text-align: center;
+      border-bottom: 3px solid var(--accent);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header h1 { font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; }
+    header .sub { color: var(--accent); font-size: 0.9rem; margin-top: 2px; font-weight: 600; }
+    header .venue { color: var(--muted); font-size: 0.8rem; margin-top: 2px; }
+    .now-banner {
+      background: #111;
+      color: var(--now);
+      text-align: center;
+      padding: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+      display: none;
+    }
+    .now-banner.show { display: block; }
+    .tabs {
+      display: flex;
+      overflow-x: auto;
+      background: #111;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 78px;
+      z-index: 90;
+      -webkit-overflow-scrolling: touch;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      flex: 0 0 auto;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      border: none;
+      background: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .tab.active {
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+    }
+    .content { padding: 12px 12px; }
+    .stage-section { display: none; }
+    .stage-section.active { display: block; }
+    .set-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      border-left: 4px solid var(--accent);
+      position: relative;
+    }
+    .set-card.now {
+      border-left-color: var(--now);
+      box-shadow: 0 0 0 1px var(--now);
+    }
+    .set-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .set-time {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.9rem;
+      min-width: 110px;
+    }
+    .set-artist-wrap {
+      flex: 1;
+      text-align: right;
+    }
+    .artist-link {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .artist-link:hover, .artist-link:active { color: var(--accent); }
+    .meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .star {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 0 4px;
+      color: #555;
+      line-height: 1;
+    }
+    .star.on { color: var(--fav); }
+    .timeline-item {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+    }
+    .timeline-item.now { box-shadow: 0 0 0 1px var(--now); }
+    .timeline-time {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+    .timeline-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+      padding: 3px 0;
+      gap: 8px;
+    }
+    .stage-label { color: var(--muted); font-size: 0.75rem; min-width: 60px; }
+    .fav-empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 40px 20px;
+      font-size: 0.95rem;
+    }
+    .info-box {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 14px;
+      margin: 10px 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .info-box strong { color: var(--accent); }
+    footer {
+      text-align: center;
+      padding: 16px;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MELT FESTIVAL</h1>
+    <div class="sub">21 NOVEMBER 2026</div>
+    <div class="venue">Melt Livehouse · Cloud 11 · Bangkok</div>
+  </header>
+  <div class="now-banner" id="nowBanner"></div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-stage="timeline">時序</button>
+    <button class="tab" data-stage="s1">Stage 1</button>
+    <button class="tab" data-stage="s2">Stage 2</button>
+    <button class="tab" data-stage="s3">Stage 3</button>
+    <button class="tab" data-stage="s4">Stage 4</button>
+    <button class="tab" data-stage="favs">★ 收藏</button>
+    <button class="tab" data-stage="info">資訊</button>
+  </div>
+
+  <div class="content">
+    <div class="stage-section active" id="timeline"></div>
+    <div class="stage-section" id="s1"></div>
+    <div class="stage-section" id="s2"></div>
+    <div class="stage-section" id="s3"></div>
+    <div class="stage-section" id="s4"></div>
+    <div class="stage-section" id="favs"></div>
+    <div class="stage-section" id="info">
+      <div class="info-box">
+        <strong>票務</strong><br>
+        General Admission：1700 THB<br>
+        Melt Deluxe：2500 THB<br>
+        Early Bird / VVIP：已售完<br>
+        購票：Ticketmelon
+      </div>
+      <div class="info-box">
+        <strong>交通</strong><br>
+        BTS ปุณณวิถี (Punnawithi) 出口 6 → Skywalk 約 5 分鐘<br>
+        BTS อุดมสุข (Udom Suk) 出口 2 → 步行約 6 分鐘<br>
+        可停 Cloud 11 或 True Digital Park
+      </div>
+      <div class="info-box">
+        <strong>地址</strong><br>
+        Cloud 11, 888 Sukhumvit Rd, Phra Khanong, Bangkok
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    MELT Festival EPG · 手機版<br>
+    點擊樂團名可開啟 Spotify / YouTube
+  </footer>
+
+  <script>
+    // Artist metadata: genre, country, optional exact Spotify URL (else search)
+    const ARTISTS = {
+      "Moving and Cut": { genre: "Indie Rock", country: "TH", spotify: null },
+      "Safeplanet": { genre: "Indie / Alt", country: "TH", spotify: null },
+      "CORNBOI": { genre: "Indie / Electronic", country: "TH", spotify: null },
+      "Television off": { genre: "Indie Rock", country: "TH", spotify: null },
+      "Yew": { genre: "Indie / Alt", country: "TH", spotify: null },
+      "Yented": { genre: "Indie Pop", country: "TH", spotify: null },
+      "Bomb at Track": { genre: "Rock / Alt", country: "TH", spotify: null },
+      "Srirajah Rockers": { genre: "Rock", country: "TH", spotify: null },
+      "James Alyn": { genre: "Indie / Singer-Songwriter", country: "TH", spotify: null },
+      "No Buses": { genre: "Indie Rock / Garage", country: "JP", spotify: null },
+      "pami": { genre: "Indie / Alt", country: "TH", spotify: null },
+      "WS13": { genre: "Indie / Alt", country: "TH", spotify: null },
+      "Whal & Dolph": { genre: "Indie / Electronic", country: "TH", spotify: null },
+      "Reality Club": { genre: "Indie Rock / Alt", country: "ID", spotify: "https://open.spotify.com/artist/1DjZI46mVZZZYmmmygRnTw" },
+      "SLUR": { genre: "Indie / Alt", country: "TH", spotify: null },
+      "WIM": { genre: "Indie / Alt", country: "TH", spotify: null },
+      "Yellow Fang": { genre: "Indie Rock / Alt", country: "TH", spotify: null },
+      "ADOY": { genre: "Synth Pop / Indie", country: "KR", spotify: "https://open.spotify.com/artist/64sY7LsUjNE3ifONkftTXC" },
+      "Solitude Is Bliss": { genre: "Indie / Dream Pop", country: "TH", spotify: null },
+      "YOUNGOHM": { genre: "Thai Hip-Hop / Trap", country: "TH", spotify: "https://open.spotify.com/artist/0AvGycOEDZTaBFLCaiGd9S" },
+      "Younggu + FIIXD + GUNNER": { genre: "Hip-Hop / Collab", country: "TH", spotify: null },
+      "Phum Viphurit": { genre: "Indie Folk / Neo Soul", country: "TH", spotify: "https://open.spotify.com/artist/5mqguTgtaoCMNMZD6txCh6" },
+      "JPBS": { genre: "Indie / Alt", country: "TH", spotify: null }
+    };
+
+    // Fix known Spotify IDs
+    ARTISTS["ADOY"].spotify = "https://open.spotify.com/artist/64sY7LsUjNE3ifONkftTXC";
+    ARTISTS["Phum Viphurit"].spotify = "https://open.spotify.com/artist/5mqguTgtaoCMNMZD6txCh6";
+    ARTISTS["Reality Club"].spotify = "https://open.spotify.com/artist/1DjZI46mVZZZYmmmygRnTw";
+
+    const SCHEDULE = [
+      { start: "11:45", end: "12:45", stage: "s2", artist: "Moving and Cut" },
+      { start: "13:00", end: "14:00", stage: "s1", artist: "Safeplanet" },
+      { start: "13:00", end: "14:00", stage: "s3", artist: "CORNBOI" },
+      { start: "14:05", end: "15:05", stage: "s2", artist: "Television off" },
+      { start: "14:05", end: "15:05", stage: "s4", artist: "Yew" },
+      { start: "15:10", end: "16:10", stage: "s1", artist: "Yented" },
+      { start: "15:10", end: "16:10", stage: "s3", artist: "Bomb at Track" },
+      { start: "16:15", end: "17:15", stage: "s2", artist: "Srirajah Rockers" },
+      { start: "16:15", end: "17:15", stage: "s4", artist: "James Alyn" },
+      { start: "17:20", end: "18:20", stage: "s1", artist: "No Buses" },
+      { start: "17:20", end: "18:20", stage: "s3", artist: "pami" },
+      { start: "18:25", end: "19:25", stage: "s2", artist: "WS13" },
+      { start: "18:25", end: "19:25", stage: "s4", artist: "Whal & Dolph" },
+      { start: "19:30", end: "20:30", stage: "s1", artist: "Reality Club" },
+      { start: "19:30", end: "20:30", stage: "s3", artist: "SLUR" },
+      { start: "20:35", end: "21:35", stage: "s2", artist: "WIM" },
+      { start: "20:35", end: "21:35", stage: "s4", artist: "Yellow Fang" },
+      { start: "21:40", end: "22:40", stage: "s1", artist: "ADOY" },
+      { start: "21:40", end: "22:40", stage: "s3", artist: "Solitude Is Bliss" },
+      { start: "22:45", end: "23:45", stage: "s2", artist: "YOUNGOHM" },
+      { start: "22:45", end: "23:45", stage: "s4", artist: "Younggu + FIIXD + GUNNER" },
+      { start: "23:50", end: "00:50", stage: "s1", artist: "Phum Viphurit" },
+      { start: "23:50", end: "00:50", stage: "s3", artist: "JPBS" }
+    ];
+
+    const FAV_KEY = "melt_favs_2026";
+    let favs = JSON.parse(localStorage.getItem(FAV_KEY) || "[]");
+
+    function getBangkokNow() {
+      const now = new Date();
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const bkk = new Date(utc + (7 * 3600000));
+      return bkk;
+    }
+
+    function timeToMinutes(t) {
+      const [h, m] = t.split(":").map(Number);
+      return h * 60 + m;
+    }
+
+    function isNow(set) {
+      const bkk = getBangkokNow();
+      const isFestivalDay = bkk.getFullYear() === 2026 && bkk.getMonth() === 10 && bkk.getDate() === 21;
+      if (!isFestivalDay) return false;
+
+      let start = timeToMinutes(set.start);
+      let end = timeToMinutes(set.end);
+      if (end < start) end += 24 * 60;
+      let nowMin = bkk.getHours() * 60 + bkk.getMinutes();
+      if (nowMin < 6 * 60) nowMin += 24 * 60;
+
+      return nowMin >= start && nowMin < end;
+    }
+
+    function getNextOrCurrent() {
+      const bkk = getBangkokNow();
+      const isFestivalDay = bkk.getFullYear() === 2026 && bkk.getMonth() === 10 && bkk.getDate() === 21;
+      if (!isFestivalDay) return null;
+
+      let nowMin = bkk.getHours() * 60 + bkk.getMinutes();
+      if (nowMin < 6 * 60) nowMin += 24 * 60;
+
+      let current = null;
+      let next = null;
+      let nextDiff = Infinity;
+
+      SCHEDULE.forEach(set => {
+        let start = timeToMinutes(set.start);
+        let end = timeToMinutes(set.end);
+        if (end < start) end += 24 * 60;
+        if (start < 6 * 60) start += 24 * 60;
+
+        if (nowMin >= start && nowMin < end) {
+          current = set;
+        } else if (start > nowMin && (start - nowMin) < nextDiff) {
+          nextDiff = start - nowMin;
+          next = set;
+        }
+      });
+      return current || next;
+    }
+
+    function artistLink(name) {
+      const a = ARTISTS[name] || { genre: "Indie", country: "TH" };
+      const spotify = a.spotify || `https://open.spotify.com/search/${encodeURIComponent(name)}`;
+      return spotify;
+    }
+
+    function metaText(name) {
+      const a = ARTISTS[name] || { genre: "—", country: "—" };
+      return `${a.genre} · ${a.country}`;
+    }
+
+    function toggleFav(name) {
+      const idx = favs.indexOf(name);
+      if (idx >= 0) favs.splice(idx, 1);
+      else favs.push(name);
+      localStorage.setItem(FAV_KEY, JSON.stringify(favs));
+      renderAll();
+    }
+
+    function starBtn(name) {
+      const on = favs.includes(name);
+      return `<button class="star ${on ? 'on' : ''}" onclick="toggleFav('${name.replace(/'/g, "\\'")}')" title="收藏">${on ? '★' : '☆'}</button>`;
+    }
+
+    function renderTimeline() {
+      const el = document.getElementById("timeline");
+      const groups = {};
+      SCHEDULE.forEach(s => {
+        const key = s.start + " – " + s.end;
+        if (!groups[key]) groups[key] = { time: key, items: [], start: s.start };
+        groups[key].items.push(s);
+      });
+
+      const sorted = Object.values(groups).sort((a, b) => timeToMinutes(a.start) - timeToMinutes(b.start));
+
+      el.innerHTML = sorted.map(g => {
+        const nowClass = g.items.some(isNow) ? "now" : "";
+        const rows = g.items.map(s => {
+          const stageName = { s1: "Stage 1", s2: "Stage 2", s3: "Stage 3", s4: "Stage 4" }[s.stage];
+          return `<div class="timeline-row">
+            <span class="stage-label">${stageName}</span>
+            <span>
+              <a class="artist-link" href="${artistLink(s.artist)}" target="_blank" rel="noopener">${s.artist}</a>
+              <div class="meta">${metaText(s.artist)}</div>
+            </span>
+            ${starBtn(s.artist)}
+          </div>`;
+        }).join("");
+        return `<div class="timeline-item ${nowClass}" data-start="${g.start}">
+          <div class="timeline-time">${g.time}</div>
+          ${rows}
+        </div>`;
+      }).join("");
+    }
+
+    function renderStage(id) {
+      const el = document.getElementById(id);
+      const sets = SCHEDULE.filter(s => s.stage === id);
+      el.innerHTML = sets.map(s => {
+        const nowClass = isNow(s) ? "now" : "";
+        return `<div class="set-card ${nowClass}">
+          <div class="set-header">
+            <div class="set-time">${s.start} – ${s.end}</div>
+            <div class="set-artist-wrap">
+              <a class="artist-link" href="${artistLink(s.artist)}" target="_blank" rel="noopener">${s.artist}</a>
+              <div class="meta">${metaText(s.artist)}</div>
+            </div>
+            ${starBtn(s.artist)}
+          </div>
+        </div>`;
+      }).join("");
+    }
+
+    function renderFavs() {
+      const el = document.getElementById("favs");
+      if (favs.length === 0) {
+        el.innerHTML = `<div class="fav-empty">還沒有收藏任何樂團<br>點擊星星 ★ 來收藏你愛的團</div>`;
+        return;
+      }
+      const favSets = SCHEDULE.filter(s => favs.includes(s.artist));
+      el.innerHTML = favSets.map(s => {
+        const stageName = { s1: "Stage 1", s2: "Stage 2", s3: "Stage 3", s4: "Stage 4" }[s.stage];
+        const nowClass = isNow(s) ? "now" : "";
+        return `<div class="set-card ${nowClass}">
+          <div class="set-header">
+            <div class="set-time">${s.start} – ${s.end}<br><span style="font-size:0.75rem;color:var(--muted)">${stageName}</span></div>
+            <div class="set-artist-wrap">
+              <a class="artist-link" href="${artistLink(s.artist)}" target="_blank" rel="noopener">${s.artist}</a>
+              <div class="meta">${metaText(s.artist)}</div>
+            </div>
+            ${starBtn(s.artist)}
+          </div>
+        </div>`;
+      }).join("");
+    }
+
+    function updateNowBanner() {
+      const banner = document.getElementById("nowBanner");
+      const target = getNextOrCurrent();
+      const bkk = getBangkokNow();
+      const isFestivalDay = bkk.getFullYear() === 2026 && bkk.getMonth() === 10 && bkk.getDate() === 21;
+
+      if (!isFestivalDay) {
+        const days = Math.ceil((new Date(2026, 10, 21) - bkk) / (1000 * 60 * 60 * 24));
+        banner.textContent = days > 0 ? `音樂節還有 ${days} 天開始` : "音樂節已結束";
+        banner.classList.add("show");
+        return;
+      }
+
+      if (target && isNow(target)) {
+        banner.textContent = `正在演出：${target.artist} (${target.start}–${target.end})`;
+        banner.classList.add("show");
+      } else if (target) {
+        banner.textContent = `下一場：${target.artist} ${target.start}`;
+        banner.classList.add("show");
+      } else {
+        banner.classList.remove("show");
+      }
+    }
+
+    function scrollToNow() {
+      const activeSection = document.querySelector(".stage-section.active");
+      if (!activeSection) return;
+      const target = activeSection.querySelector(".now") || activeSection.querySelector(".timeline-item");
+      if (target) {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 100);
+      }
+    }
+
+    function renderAll() {
+      renderTimeline();
+      ["s1", "s2", "s3", "s4"].forEach(renderStage);
+      renderFavs();
+      updateNowBanner();
+      if (document.getElementById("timeline").classList.contains("active")) {
+        scrollToNow();
+      }
+    }
+
+    document.querySelectorAll(".tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".stage-section").forEach(s => s.classList.remove("active"));
+        tab.classList.add("active");
+        const stage = tab.dataset.stage;
+        document.getElementById(stage).classList.add("active");
+        if (stage === "timeline") scrollToNow();
+      });
+    });
+
+    renderAll();
+
+    setInterval(() => {
+      updateNowBanner();
+      renderAll();
+    }, 60000);
+  </script>
+</body>
+</html>
